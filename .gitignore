@@ -28,7 +28,6 @@ proguard/
 
 # Android Studio Navigation editor temp files
 .navigation/
-.idea/
 
 # Android Studio captures folder
 captures/
@@ -39,3 +38,7 @@ captures/
 
 # Keystore files
 *.jks
+
+# User defined
+.idea
+.*~
