@@ -164,23 +164,9 @@ public class SDEvent
     public static ArrayList<SDEvent> filterByType(ArrayList<SDEvent> s, String ty)
     {
         String x="none";
-        if(ty.equalsIgnoreCase("athletic")) {
-            x="athletic";
-        }
-        else if(ty.equalsIgnoreCase("concerts")) {
-            x="concerts";
-        }
-        else if(ty.equalsIgnoreCase("exhibits")) {
-            x="exhibits";
-        }
-        else if(ty.equalsIgnoreCase("farmers")) {
-            x="farmers";
-        }
-        else if(ty.equalsIgnoreCase("festival")) {
-            x="festival";
-        }
-        else if(ty.equalsIgnoreCase("parades")) {
-            x="parades";
+        if(!ty.equalsIgnoreCase(""))
+        {
+            x=ty;
         }
         for(int i=0;i<s.size();i++)
         {
