@@ -17,8 +17,6 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import static com.mvhs.sdconnected.SearchEvents.list2;
-
 public class SearchEvents extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
 
@@ -43,6 +41,7 @@ public class SearchEvents extends AppCompatActivity
 
         final Button button = (Button) findViewById(R.id.Search);
         button.setOnClickListener(this);
+
     }
 
     @Override

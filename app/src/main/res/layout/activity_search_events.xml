@@ -19,7 +19,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_serach_eventscl"
-        app:menu="@menu/activity_serach_eventscl_drawer" />
+        app:menu="@menu/activity_search_events_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

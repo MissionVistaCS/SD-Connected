@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -22,8 +23,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.mvhs.sdconnected.SearchEvents.list2;
+
 public class SDConnected extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener{
 
     public static String APP_NAME = "SD Connected";
     public static List<SDEvent> sdevents = new ArrayList<>();
@@ -57,7 +60,6 @@ public class SDConnected extends AppCompatActivity
     {
         //Do stuff like updating UI elements
         String forList[] = new String[sdevents.size()];
-        sdevents.add(new SDEvent(1,"title","subtitle","description","location","type",new Date(11,11,11),new Date(11,11,11),"host","url",0,0,"address",0,0));
 
         for(int i =0;i<forList.length;i++)
         {
@@ -65,9 +67,21 @@ public class SDConnected extends AppCompatActivity
         }
 
         ListView listView = (ListView) findViewById(R.id.list);
-        String[] test = {"help","me"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.drawer_list_item,forList);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        int itemPosition = position;
+        Intent i = new Intent(this,EventInfo.class);
+        i.putExtra("infocall",sdevents.get(position).getId());
+        startActivity(i);
+
+
     }
 
     @Override
