@@ -42,3 +42,4 @@ captures/
 # User defined
 .idea
 .*~
+.DS_Store
