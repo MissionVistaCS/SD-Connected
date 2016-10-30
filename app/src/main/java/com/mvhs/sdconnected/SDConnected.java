@@ -19,6 +19,9 @@ import android.widget.ListView;
 
 import com.mvhs.sdconnected.network.GetSDEvents;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +35,10 @@ public class SDConnected extends AppCompatActivity
     public static List<SDEvent> sdevents = new ArrayList<>();
     public static int LIMIT = 100;
     public static String link = "http://data.sandiego.gov/api/action/datastore/search.json?resource_id=8a5018b2-7635-416f-a252-cf04e54d6719&limit=";
-
+    public static ArrayList<SDEvent> myList = new ArrayList<>();
+    public static File file;
+    public static String path = "myevent.txt";
+    public static File RFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +64,21 @@ public class SDConnected extends AppCompatActivity
      */
     public void onEventGetFinish()
     {
+        file = this.getFilesDir();
+        RFile = new File(this.getFilesDir(), path);
+
         //Do stuff like updating UI elements
-        String forList[] = new String[sdevents.size()];
+        String forList[] = new String[myList.size()];
 
         for(int i =0;i<forList.length;i++)
         {
-            forList[i]=""+sdevents.get(i).getTitle();
+            forList[i]=""+myList.get(i).getTitle();
         }
 
         ListView listView = (ListView) findViewById(R.id.list);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.drawer_list_item,forList);
         listView.setAdapter(adapter);
-
+        SDEvent.setFileArrayList(myList);
         listView.setOnItemClickListener(this);
     }
 
@@ -123,9 +132,10 @@ public class SDConnected extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-
+            SDEvent.setFileArrayList(myList);
         } else if (id == R.id.nav_gallery) {
             Intent i = new Intent(this,SearchEvents.class);
+
             startActivity(i);
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(this,VotingLocationSearch.class);
@@ -138,4 +148,5 @@ public class SDConnected extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

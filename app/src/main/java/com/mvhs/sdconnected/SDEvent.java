@@ -1,5 +1,9 @@
 package com.mvhs.sdconnected;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -155,7 +159,7 @@ public class SDEvent
     }
     public static ArrayList<SDEvent> filterByType(ArrayList<SDEvent> s, String ty)
     {
-        String x="ATHLETIC";
+        String x="none";
         if(ty.equalsIgnoreCase("athletic")) {
             x="athletic";
         }
@@ -176,10 +180,63 @@ public class SDEvent
         }
         for(int i=0;i<s.size();i++)
         {
-            if(!x.equalsIgnoreCase(s.get(i).getType()))
+            if(x.equals("none"))
+            {
+                break;
+            }
+             else if(!x.equalsIgnoreCase(s.get(i).getType()))
             {
                 s.remove(i);
                 i--;
+            }
+        }
+        return s;
+    }
+    static public ArrayList<SDEvent> addStringIds(ArrayList<SDEvent> sd,ArrayList<String> ids)
+    {
+
+        for(int i = 0; i<ids.size();i++) {
+
+            if(!SDEvent.getSDEventByID(Integer.parseInt(ids.get(i))).equalsOne(sd)) {
+                sd.add(SDEvent.getSDEventByID(Integer.parseInt(ids.get(i))));
+            }
+
+        }
+        return sd;
+    }
+    public boolean equalsOne(ArrayList<SDEvent> sd) {
+        for(SDEvent e : sd)
+        {
+            if(this==e)
+                return true;
+        }
+        return false;
+    }
+    static public void setFileArrayList(ArrayList<SDEvent> s) {
+        try {
+            File file = new File(SDConnected.file, SDConnected.path);
+            FileReader fInput = new FileReader(file);
+            BufferedReader br = new BufferedReader(fInput);
+            ArrayList<String> d = new ArrayList<String>();
+            d.addAll(splitArray(br.readLine()));
+            addStringIds(s,d);
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+    static public ArrayList<String> splitArray(String x) {
+        ArrayList<String> s = new ArrayList<String>();
+        int i2 =0;
+        for(int i = 0;i<x.length();i++)
+        {
+            if(x.substring(i,i).equals(",")) {
+                s.add(x.substring(i2,i));
+            }
+            else if(i+1==x.length()) {
+                s.add(x.substring(i,x.length()));
             }
         }
         return s;

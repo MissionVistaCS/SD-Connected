@@ -15,6 +15,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -120,8 +121,9 @@ public class EventInfo extends AppCompatActivity {
 
     public void save(View view){
         boolean write=true;
+        this.getFilesDir();
         String path = "myevent.txt";
-        File file = new File(this.getFilesDir(), path);
+        File file = SDConnected.RFile;
         System.out.println(this.getFilesDir());
         try {
             FileReader fInput = new FileReader(file);
@@ -147,6 +149,8 @@ public class EventInfo extends AppCompatActivity {
                 FileOutputStream fOut = openFileOutput(path, MODE_WORLD_READABLE);
                 OutputStreamWriter osw = new OutputStreamWriter(fOut);
                 osw.write(getIntent().getIntExtra("infocall", 0));
+
+
                 osw.flush();
                 osw.close();
             } catch (IOException ioe) {
