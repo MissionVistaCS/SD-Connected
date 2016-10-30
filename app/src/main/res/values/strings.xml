@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">SD Connected</string>
+    <string name="app_name">My Events</string>
     <string name="title_activity_test_drawer">TestDrawer</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_serach_eventscl">SerachEventscl</string>
+    <string name="title_activity_serach_eventscl">Search Events</string>
 </resources>
