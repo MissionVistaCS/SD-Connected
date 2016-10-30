@@ -15,6 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SearchEvents" />
+        <activity android:name=".EventList" />
+        <activity android:name=".EventInfo" />
+        <activity android:name=".VotingLocationSearch" />
+        <activity android:name=".VotingLocationResults"></activity>
     </application>
 
 </manifest>
