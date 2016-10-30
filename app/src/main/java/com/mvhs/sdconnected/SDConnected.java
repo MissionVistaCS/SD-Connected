@@ -30,7 +30,7 @@ import java.util.List;
 import static com.mvhs.sdconnected.SearchEvents.list2;
 
 public class SDConnected extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener{
+        implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
     public static String APP_NAME = "SD Connected";
     public static List<SDEvent> sdevents = new ArrayList<>();
@@ -56,29 +56,35 @@ public class SDConnected extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
         GetSDEvents.reloadEvents(this);
-        }
+    }
 
     /**
      * This method is called after GetSDEvents is finished.
      */
-    public void onEventGetFinish()
-    {
+    public void onEventGetFinish() {
         file = this.getFilesDir();
         RFile = new File(this.getFilesDir(), path);
-        try {RFile.createNewFile();}
-        catch(IOException e){e.printStackTrace();}
+        try {
+            RFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //Do stuff like updating UI elements
         String forList[] = new String[myList.size()];
 
-        for(int i =0;i<forList.length;i++)
-        {
-            forList[i]=""+myList.get(i).getTitle();
+        for (int i = 0; i < forList.length; i++) {
+            forList[i] = "" + myList.get(i).getTitle();
         }
 
         ListView listView = (ListView) findViewById(R.id.list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.drawer_list_item,forList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, forList);
         listView.setAdapter(adapter);
 
         SDEvent.setFileArrayList(myList);
@@ -90,11 +96,9 @@ public class SDConnected extends AppCompatActivity
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         int itemPosition = position;
-        Intent i = new Intent(this,EventInfo.class);
-        i.putExtra("infocall",sdevents.get(position).getId());
+        Intent i = new Intent(this, EventInfo.class);
+        i.putExtra("infocall", sdevents.get(position).getId());
         startActivity(i);
-
-
     }
 
     @Override
@@ -138,11 +142,11 @@ public class SDConnected extends AppCompatActivity
         if (id == R.id.nav_camera) {
             SDEvent.setFileArrayList(myList);
         } else if (id == R.id.nav_gallery) {
-            Intent i = new Intent(this,SearchEvents.class);
+            Intent i = new Intent(this, SearchEvents.class);
 
             startActivity(i);
         } else if (id == R.id.nav_slideshow) {
-            Intent i = new Intent(this,VotingLocationSearch.class);
+            Intent i = new Intent(this, VotingLocationSearch.class);
             startActivity(i);
         } else if (id == R.id.nav_manage) {
 
