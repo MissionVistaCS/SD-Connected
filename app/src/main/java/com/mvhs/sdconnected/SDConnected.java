@@ -148,8 +148,6 @@ public class SDConnected extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(this, VotingLocationSearch.class);
             startActivity(i);
-        } else if (id == R.id.nav_manage) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

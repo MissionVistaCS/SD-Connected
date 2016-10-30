@@ -122,13 +122,10 @@ public class SearchEvents extends AppCompatActivity
             SDEvent.setFileArrayList(myList);
             finish();
         } else if (id == R.id.nav_gallery) {
-            Intent i = new Intent(this, SearchEvents.class);
-            startActivity(i);
+            
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(this, VotingLocationSearch.class);
             startActivity(i);
-        } else if (id == R.id.nav_manage) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

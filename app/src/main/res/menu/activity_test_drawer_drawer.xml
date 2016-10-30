@@ -14,10 +14,7 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/voting"
             android:title="Voting Locations" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/settings"
-            android:title="Settings" />
+
     </group>
 
 </menu>

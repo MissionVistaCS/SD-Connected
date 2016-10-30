@@ -2,9 +2,11 @@ package com.mvhs.sdconnected;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -129,8 +131,11 @@ public class EventInfo extends AppCompatActivity{
             while (br.ready()) {
                 fileLines = br.readLine();
                 ids = Arrays.asList(fileLines.split(","));
-                if(ids.contains(thisID))
-                    write=false;
+                if(ids.contains(thisID)) {
+                    write = false;
+
+
+                }
             }
             writing = ids;
         }
@@ -156,6 +161,10 @@ public class EventInfo extends AppCompatActivity{
                 osw.flush();
                 osw.close();
                 SDEvent.setFileArrayList(myList);
+                int dur = Toast.LENGTH_SHORT;
+                Toast to = Toast.makeText(this, "You Have Saved", dur);
+                to.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                to.show();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
