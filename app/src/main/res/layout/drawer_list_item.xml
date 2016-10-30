@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:andriod="http://schemas.android.com/apk/res/android"
+    andriod:layout_width="fill_parent"
+    andriod:layout_height="wrap_content"
+    andriod:text="New Text"
+    andriod:id="@+id/textView"/>
