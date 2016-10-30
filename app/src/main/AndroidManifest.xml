@@ -10,18 +10,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SDConnected" android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".SDConnected"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchEvents" />
         <activity android:name=".EventList" />
         <activity android:name=".EventInfo" />
         <activity android:name=".VotingLocationSearch" />
         <activity android:name=".VotingLocationResults" />
+        <activity
+            android:name=".SearchEvents"
+            android:label="@string/title_activity_serach_eventscl"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -46,7 +46,8 @@ public class EventList extends AppCompatActivity implements AdapterView.OnItemCl
         //String itemValue = (String) ListView.getItemAtPosition(position);
         //System.out.println(itemValue);
         Intent i = new Intent(this,EventInfo.class);
-        i.putExtra("yo",list2.get(position).getId());
+        i.putExtra("infocall",list2.get(position).getId());
+        startActivity(i);
 
 
     }

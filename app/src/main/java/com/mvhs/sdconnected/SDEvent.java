@@ -102,7 +102,7 @@ public class SDEvent
         return longitude;
     }
 
-    public SDEvent getSDEventByID(int id) {
+    static public SDEvent getSDEventByID(int id) {
         SDEvent e = null;
 
         for(int i = 0; i<SDConnected.sdevents.size();i++)
