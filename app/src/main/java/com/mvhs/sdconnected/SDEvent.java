@@ -15,8 +15,7 @@ import java.util.List;
  * Created by ayates on 10/29/16.
  */
 
-public class SDEvent
-{
+public class SDEvent {
     private int id;
     private String title;
     private String subtitle;
@@ -114,10 +113,8 @@ public class SDEvent
     static public SDEvent getSDEventByID(int id) {
         SDEvent e = null;
 
-        for(int i = 0; i<SDConnected.sdevents.size();i++)
-        {
-            if(id == SDConnected.sdevents.get(i).getId())
-            {
+        for (int i = 0; i < SDConnected.sdevents.size(); i++) {
+            if (id == SDConnected.sdevents.get(i).getId()) {
                 e = SDConnected.sdevents.get(i);
                 break;
             }
@@ -125,83 +122,81 @@ public class SDEvent
 
         return e;
     }
-    static public ArrayList<SDEvent> filterBetweenTimes(ArrayList<SDEvent> s, String st)
-    {
+
+    static public ArrayList<SDEvent> filterBetweenTimes(ArrayList<SDEvent> s, String st) {
         ArrayList<SDEvent> redone = new ArrayList<SDEvent>();
-        int min=0;
-        int max=0;
-        if(st.equalsIgnoreCase("morning")) {
+        int min = 0;
+        int max = 0;
+        if (st.equalsIgnoreCase("morning")) {
             min = 5;
             max = 10;
-        }
-        else if(st.equalsIgnoreCase("noon")) {
+        } else if (st.equalsIgnoreCase("noon")) {
             min = 10;
             max = 15;
-        }
-        else if(st.equalsIgnoreCase("afternoon")) {
+        } else if (st.equalsIgnoreCase("afternoon")) {
             min = 15;
             max = 21;
-        }
-        else if(st.equalsIgnoreCase("night")){
+        } else if (st.equalsIgnoreCase("night")) {
             min = 21;
             max = 5;
         }
 
-        for(int i = 0; i<s.size();i++)
+        if (st.equalsIgnoreCase("none"))
         {
+            redone.addAll(s);
+            return redone;
+        }
+
+        for (int i = 0; i < s.size(); i++) {
             int t = s.get(i).getStart().getHours();
-            if(st.equals("night") && t<5 || t>21)
-            {
+            if (st.equals("night") && t < 5 || t > 21) {
                 redone.add(s.get(i));
-            }
-            else if(t>min && t<max)
-            {
+            } else if (t > min && t < max) {
                 redone.add(s.get(i));
             }
         }
         return redone;
     }
-    public static ArrayList<SDEvent> filterByType(ArrayList<SDEvent> s, String ty)
-    {
-        String x="none";
-        if(!ty.equalsIgnoreCase(""))
-        {
-            x=ty;
-        }
-        for(int i=0;i<s.size();i++)
-        {
-            if(x.equals("none"))
+
+    public static ArrayList<SDEvent> filterByType(ArrayList<SDEvent> s, String ty) {
+
+        List<SDEvent> events = new ArrayList<>();
+
+        for (int i = 0; i < s.size(); i++) {
+            if (ty.equalsIgnoreCase("none"))
             {
+                events.addAll(s);
                 break;
             }
-             else if(!x.equalsIgnoreCase(s.get(i).getType()))
+            else if (s.get(i).getType().equalsIgnoreCase(ty))
             {
-                s.remove(i);
-                i--;
+                events.add(s.get(i));
             }
+        }
+
+        return (ArrayList<SDEvent>) events;
+    }
+
+    static public ArrayList<SDEvent> addStringIds(ArrayList<SDEvent> s, ArrayList<String> ids) {
+
+        for (int i = 0; i < ids.size(); i++) {
+
+            if (!SDEvent.getSDEventByID(Integer.parseInt(ids.get(i))).equalsOne(s)) {
+                s.add(SDEvent.getSDEventByID(Integer.parseInt(ids.get(i))));
+            }
+
         }
         return s;
     }
-    static public ArrayList<SDEvent> addStringIds(ArrayList<SDEvent> sd,ArrayList<String> ids)
-    {
 
-        for(int i = 0; i<ids.size();i++) {
-
-            if(!SDEvent.getSDEventByID(Integer.parseInt(ids.get(i))).equalsOne(sd)) {
-                sd.add(SDEvent.getSDEventByID(Integer.parseInt(ids.get(i))));
-            }
-
-        }
-        return sd;
-    }
     public boolean equalsOne(ArrayList<SDEvent> sd) {
-        for(SDEvent e : sd)
-        {
-            if(this==e)
+        for (SDEvent e : sd) {
+            if (this == e)
                 return true;
         }
         return false;
     }
+
     static public ArrayList<SDEvent> setFileArrayList(ArrayList<SDEvent> s) {
         ArrayList<SDEvent> retval = new ArrayList<SDEvent>();
         try {
@@ -212,12 +207,10 @@ public class SDEvent
             List<String> blah = new ArrayList<String>();
             blah = Arrays.asList(br.readLine().split(","));
             d.addAll(blah);
-            retval = addStringIds(s,d);
+            retval = addStringIds(s, d);
 
             //Log.d(SDConnected.APP_NAME, file.getAbsolutePath());
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
         return retval;
