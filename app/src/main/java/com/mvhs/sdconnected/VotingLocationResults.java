@@ -18,9 +18,6 @@ public class VotingLocationResults extends AppCompatActivity {
         setContentView(R.layout.activity_voting_location_results);
         TextView address = (TextView) findViewById(R.id.textView4);
         address.setText(message);
-        new GetVoterInfo().execute(url)
-
-
     }
 }
 

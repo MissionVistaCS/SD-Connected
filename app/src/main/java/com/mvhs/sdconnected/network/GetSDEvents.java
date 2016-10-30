@@ -8,13 +8,22 @@ import com.mvhs.sdconnected.SDEvent;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GetSDEvents extends AsyncTask<String, Integer, Boolean> {
 
-    public static void reloadEvents()
+    private SDConnected sdConnected;
+
+    public GetSDEvents(SDConnected sdConnected)
     {
-        new GetSDEvents().execute(SDConnected.link + SDConnected.LIMIT);
+        this.sdConnected = sdConnected;
+    }
+
+    public static void reloadEvents(SDConnected sdConnected)
+    {
+        new GetSDEvents(sdConnected).execute(SDConnected.link + SDConnected.LIMIT);
     }
 
     @Override
@@ -45,10 +54,15 @@ public class GetSDEvents extends AsyncTask<String, Integer, Boolean> {
                     //int partips = Integer.parseInt(eventObj.getString("exp_participants").replace(",", ""));
                     String address = eventObj.getString("event_address");
 
+                    DateFormat df = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss");
+                    //Date startDate = df.parse(start);
+                    //Date endDate = df.parse(end);
+
                     //Date startDate = Date.valueOf(start);
                     //Date endDate = Date.valueOf(end);
 
                     SDConnected.sdevents.add(new SDEvent(id, title, subtitle, desc, loc, type, null, null, host, url, 0, 0, address, 0, 0));
+                    Log.d(SDConnected.APP_NAME, SDConnected.sdevents.get(i).getStart().toString());
                 }
                 return true;
             }
@@ -64,6 +78,6 @@ public class GetSDEvents extends AsyncTask<String, Integer, Boolean> {
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
         if (aBoolean)
-            SDConnected.onEventGetFinish();
+            sdConnected.onEventGetFinish();
     }
 }
