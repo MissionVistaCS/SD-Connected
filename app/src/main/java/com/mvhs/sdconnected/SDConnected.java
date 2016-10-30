@@ -78,7 +78,9 @@ public class SDConnected extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.list);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.drawer_list_item,forList);
         listView.setAdapter(adapter);
+
         SDEvent.setFileArrayList(myList);
+
         listView.setOnItemClickListener(this);
     }
 

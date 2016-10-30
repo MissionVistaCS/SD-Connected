@@ -1,11 +1,15 @@
 package com.mvhs.sdconnected;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ayates on 10/29/16.
@@ -124,21 +128,21 @@ public class SDEvent
     static public ArrayList<SDEvent> filterBetweenTimes(ArrayList<SDEvent> s, String st)
     {
         ArrayList<SDEvent> redone = new ArrayList<SDEvent>();
-        int min;
-        int max;
-        if(st.equals("morning")) {
+        int min=0;
+        int max=0;
+        if(st.equalsIgnoreCase("morning")) {
             min = 5;
             max = 10;
         }
-        else if(st.equals("noon")) {
+        else if(st.equalsIgnoreCase("noon")) {
             min = 10;
             max = 15;
         }
-        else if(st.equals("afternoon")) {
+        else if(st.equalsIgnoreCase("afternoon")) {
             min = 15;
             max = 21;
         }
-        else {
+        else if(st.equalsIgnoreCase("night")){
             min = 21;
             max = 5;
         }
@@ -212,34 +216,25 @@ public class SDEvent
         }
         return false;
     }
-    static public void setFileArrayList(ArrayList<SDEvent> s) {
+    static public ArrayList<SDEvent> setFileArrayList(ArrayList<SDEvent> s) {
+        ArrayList<SDEvent> retval = new ArrayList<SDEvent>();
         try {
             File file = new File(SDConnected.file, SDConnected.path);
             FileReader fInput = new FileReader(file);
             BufferedReader br = new BufferedReader(fInput);
             ArrayList<String> d = new ArrayList<String>();
-            d.addAll(splitArray(br.readLine()));
-            addStringIds(s,d);
+            List<String> blah = new ArrayList<String>();
+            blah = Arrays.asList(br.readLine().split(","));
+            d.addAll(blah);
+            retval = addStringIds(s,d);
 
+            //Log.d(SDConnected.APP_NAME, file.getAbsolutePath());
         }
         catch (Exception e)
         {
             System.out.println(e);
         }
-    }
-    static public ArrayList<String> splitArray(String x) {
-        ArrayList<String> s = new ArrayList<String>();
-        int i2 =0;
-        for(int i = 0;i<x.length();i++)
-        {
-            if(x.substring(i,i).equals(",")) {
-                s.add(x.substring(i2,i));
-            }
-            else if(i+1==x.length()) {
-                s.add(x.substring(i,x.length()));
-            }
-        }
-        return s;
+        return retval;
     }
     //static public ArrayList<SDEvent> filterByAttendence(ArrayList<SDEvent> s, )
 
