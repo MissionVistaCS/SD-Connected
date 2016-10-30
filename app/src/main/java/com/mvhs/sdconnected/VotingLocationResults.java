@@ -23,6 +23,7 @@ public class VotingLocationResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
+        setTitle("Voting Location");
         String message = intent.getStringExtra(VotingLocationSearch.EXTRA_MESSAGE);
         setContentView(R.layout.activity_voting_location_results);
         myAddress = (TextView) findViewById(R.id.textView4);

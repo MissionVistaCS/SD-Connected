@@ -14,6 +14,7 @@ public class VotingLocationSearch extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voting_location_search);
+        setTitle("Voting Booth Search");
     }
 
     public void searchButton(View button){
