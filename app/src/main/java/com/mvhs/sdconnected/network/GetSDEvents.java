@@ -23,7 +23,10 @@ public class GetSDEvents extends AsyncTask<String, Integer, Boolean> {
 
     public static void reloadEvents(SDConnected sdConnected)
     {
-        new GetSDEvents(sdConnected).execute(SDConnected.link + SDConnected.LIMIT);
+        int x = 0;
+        for(int i = 0;i<10;i++) {
+            new GetSDEvents(sdConnected).execute(SDConnected.link + SDConnected.LIMIT + "&offset=" + i*100);
+        }
     }
 
     @Override
