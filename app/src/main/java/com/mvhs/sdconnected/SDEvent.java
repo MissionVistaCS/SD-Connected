@@ -101,4 +101,19 @@ public class SDEvent
     public float getLongitude() {
         return longitude;
     }
+
+    public SDEvent getSDEventByID(int id) {
+        SDEvent e = null;
+
+        for(int i = 0; i<SDConnected.sdevents.size();i++)
+        {
+            if(id == SDConnected.sdevents.get(i).getId())
+            {
+                e = SDConnected.sdevents.get(i);
+                break;
+            }
+        }
+
+        return e;
+    }
 }
