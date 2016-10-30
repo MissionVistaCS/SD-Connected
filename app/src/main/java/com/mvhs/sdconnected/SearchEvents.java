@@ -2,9 +2,6 @@ package com.mvhs.sdconnected;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,12 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
 public class SearchEvents extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     static ArrayList<SDEvent> list2 = new ArrayList<SDEvent>();
 
@@ -42,6 +43,20 @@ public class SearchEvents extends AppCompatActivity
         final Button button = (Button) findViewById(R.id.Search);
         button.setOnClickListener(this);
 
+        Spinner typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeSpinner.setAdapter(adapter);
+
+        Spinner timeSpinner = (Spinner) findViewById(R.id.timeSpinner);
+        ArrayAdapter<CharSequence> timeAdapter = ArrayAdapter.createFromResource(this, R.array.times, android.R.layout.simple_spinner_item);
+        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        timeSpinner.setAdapter(timeAdapter);
+
+        Spinner attnSpinner = (Spinner) findViewById(R.id.attendanceSpinner);
+        ArrayAdapter<CharSequence> attnAdapter = ArrayAdapter.createFromResource(this, R.array.attendance, android.R.layout.simple_spinner_item);
+        attnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        attnSpinner.setAdapter(attnAdapter);
     }
 
     @Override
@@ -94,6 +109,8 @@ public class SearchEvents extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             Intent i = new Intent(this,SearchEvents.class);
             startActivity(i);
+
+
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(this,VotingLocationSearch.class);
             startActivity(i);
@@ -104,5 +121,26 @@ public class SearchEvents extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        switch (view.getId())
+        {
+            case R.id.typeSpinner:
+                //Do something
+                break;
+            case R.id.timeSpinner:
+                //Do something
+                break;
+            case R.id.attendanceSpinner:
+                //Do something
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

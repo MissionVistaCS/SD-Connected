@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="types">
+        <item>None</item>
+        <item>Athletic</item>
+        <item>Concerts</item>
+        <item>Exhibits</item>
+        <item>Farmers</item>
+        <item>Festival</item>
+        <item>Parades</item>
+    </string-array>
+
+    <string-array name="times">
+        <item>None</item>
+        <item>Morning</item>
+        <item>Noon</item>
+        <item>Afternoon</item>
+        <item>Evening</item>
+    </string-array>
+
+    <string-array name="attendance">
+        <item>None</item>
+        <item>Less than 20</item>
+        <item>Between 20 and 100</item>
+        <item>Above 100</item>
+    </string-array>
+</resources>
