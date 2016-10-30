@@ -10,10 +10,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mvhs.sdconnected.network.GetSDEvents;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SDConnected extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+    public static String APP_NAME = "SD Connected";
+    public static List<SDEvent> sdevents = new ArrayList<>();
+    public static int LIMIT = 50;
+    public static String link = "http://data.sandiego.gov/api/action/datastore/search.json?resource_id=8a5018b2-7635-416f-a252-cf04e54d6719&limit=";
+
     private String[] Titles = {"My Events", "Search Events", "Voting Locations", "Trending", "Options"};
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +39,16 @@ public class SDConnected extends AppCompatActivity implements AdapterView.OnItem
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, Titles));
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(this);
+
+        GetSDEvents.reloadEvents();
+    }
+
+    /**
+     * This method is called after GetSDEvents is finished.
+     */
+    public static void onEventGetFinish()
+    {
+        //Do stuff like updating UI elements
     }
 
     @Override
@@ -43,7 +66,7 @@ public class SDConnected extends AppCompatActivity implements AdapterView.OnItem
         }
         else
         {
-            
+
         }
 
     }
