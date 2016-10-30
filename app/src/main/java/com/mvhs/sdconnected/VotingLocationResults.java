@@ -66,8 +66,6 @@ public class VotingLocationResults extends AppCompatActivity {
 
     public void setZip(String zip) {
         this.zip.setText(zip);
-        TextView address = (TextView) findViewById(R.id.textView4);
-        address.setText(message);
     }
 }
 

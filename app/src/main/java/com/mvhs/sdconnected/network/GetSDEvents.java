@@ -54,7 +54,7 @@ public class GetSDEvents extends AsyncTask<String, Integer, Boolean> {
                     //int partips = Integer.parseInt(eventObj.getString("exp_participants").replace(",", ""));
                     String address = eventObj.getString("event_address");
 
-                    DateFormat df = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss");
+                    //DateFormat df = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss");
                     //Date startDate = df.parse(start);
                     //Date endDate = df.parse(end);
 
@@ -62,7 +62,7 @@ public class GetSDEvents extends AsyncTask<String, Integer, Boolean> {
                     //Date endDate = Date.valueOf(end);
 
                     SDConnected.sdevents.add(new SDEvent(id, title, subtitle, desc, loc, type, null, null, host, url, 0, 0, address, 0, 0));
-                    Log.d(SDConnected.APP_NAME, SDConnected.sdevents.get(i).getStart().toString());
+                    //Log.d(SDConnected.APP_NAME, SDConnected.sdevents.get(i).getStart().toString());
                 }
                 return true;
             }

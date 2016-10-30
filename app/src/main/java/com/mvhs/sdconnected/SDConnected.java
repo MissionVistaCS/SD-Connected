@@ -13,10 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.mvhs.sdconnected.network.GetSDEvents;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SDConnected extends AppCompatActivity
@@ -35,7 +38,6 @@ public class SDConnected extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -45,15 +47,27 @@ public class SDConnected extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        GetSDEvents.reloadEvents();
-    }
+        GetSDEvents.reloadEvents(this);
+        }
 
     /**
      * This method is called after GetSDEvents is finished.
      */
-    public static void onEventGetFinish()
+    public void onEventGetFinish()
     {
         //Do stuff like updating UI elements
+        String forList[] = new String[sdevents.size()];
+        sdevents.add(new SDEvent(1,"title","subtitle","description","location","type",new Date(11,11,11),new Date(11,11,11),"host","url",0,0,"address",0,0));
+
+        for(int i =0;i<forList.length;i++)
+        {
+            forList[i]=""+sdevents.get(i).getTitle();
+        }
+
+        ListView listView = (ListView) findViewById(R.id.list);
+        String[] test = {"help","me"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.drawer_list_item,forList);
+        listView.setAdapter(adapter);
     }
 
     @Override
