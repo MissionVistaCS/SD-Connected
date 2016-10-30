@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
@@ -19,7 +18,7 @@ import java.util.List;
 
 import static com.mvhs.sdconnected.SDConnected.myList;
 
-public class EventInfo extends AppCompatActivity {
+public class EventInfo extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,6 @@ public class EventInfo extends AppCompatActivity {
         setContentView(R.layout.activity_event_info);
         final ListView ListView = (ListView) findViewById(R.id.listvi);
 //        Intent i = getIntent();
-        Button calendarButton = (Button) findViewById(R.id.calendarButton);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, getListEventInformation(SDEvent.getSDEventByID(getIntent().getIntExtra("infocall",0))));
         if(adapter!=null)
             ListView.setAdapter(adapter);
@@ -163,15 +161,5 @@ public class EventInfo extends AppCompatActivity {
             }
         }
     }
-
-//    calendarButton.setOnClickListener(new View.OnClickListener()
-//    {
-//        public void onClick(View v) {
-//
-//            if (checkBox.isChecked()) {
-//
-//            }
-//        }
-//        }
 
 }
