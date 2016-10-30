@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchEvents extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -61,8 +63,18 @@ public class SearchEvents extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
+
         Intent i = new Intent(this, EventList.class);
-        list2.addAll(SDConnected.sdevents);
+        Object types = ((Spinner) findViewById(R.id.typeSpinner)).getSelectedItem();
+        Object times = ((Spinner) findViewById(R.id.timeSpinner)).getSelectedItem();
+        List<SDEvent> events = new ArrayList<>();
+
+        Log.d(SDConnected.APP_NAME, "Search has been clicked: " + types.toString());
+
+        events.addAll(SDEvent.filterByType((ArrayList<SDEvent>) SDConnected.sdevents, types.toString()));
+        events = SDEvent.filterBetweenTimes((ArrayList<SDEvent>) events, times.toString());
+
+        list2 = (ArrayList<SDEvent>) events;
         startActivity(i);
     }
 
@@ -107,12 +119,12 @@ public class SearchEvents extends AppCompatActivity
         if (id == R.id.nav_camera) {
 
         } else if (id == R.id.nav_gallery) {
-            Intent i = new Intent(this,SearchEvents.class);
+            Intent i = new Intent(this, SearchEvents.class);
             startActivity(i);
 
 
         } else if (id == R.id.nav_slideshow) {
-            Intent i = new Intent(this,VotingLocationSearch.class);
+            Intent i = new Intent(this, VotingLocationSearch.class);
             startActivity(i);
         } else if (id == R.id.nav_manage) {
 
@@ -125,22 +137,13 @@ public class SearchEvents extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        switch (view.getId())
-        {
-            case R.id.typeSpinner:
-                //Do something
-                break;
-            case R.id.timeSpinner:
-                //Do something
-                break;
-            case R.id.attendanceSpinner:
-                //Do something
-                break;
-        }
+
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }
