@@ -30,7 +30,7 @@ public class SDConnected extends AppCompatActivity
 
     public static String APP_NAME = "SD Connected";
     public static List<SDEvent> sdevents = new ArrayList<>();
-    public static int LIMIT = 50;
+    public static int LIMIT = 100;
     public static String link = "http://data.sandiego.gov/api/action/datastore/search.json?resource_id=8a5018b2-7635-416f-a252-cf04e54d6719&limit=";
 
 

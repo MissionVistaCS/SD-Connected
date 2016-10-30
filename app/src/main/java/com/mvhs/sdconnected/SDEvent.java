@@ -1,5 +1,6 @@
 package com.mvhs.sdconnected;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -116,5 +117,73 @@ public class SDEvent
 
         return e;
     }
-    static public 
+    static public ArrayList<SDEvent> filterBetweenTimes(ArrayList<SDEvent> s, String st)
+    {
+        ArrayList<SDEvent> redone = new ArrayList<SDEvent>();
+        int min;
+        int max;
+        if(st.equals("morning")) {
+            min = 5;
+            max = 10;
+        }
+        else if(st.equals("noon")) {
+            min = 10;
+            max = 15;
+        }
+        else if(st.equals("afternoon")) {
+            min = 15;
+            max = 21;
+        }
+        else {
+            min = 21;
+            max = 5;
+        }
+
+        for(int i = 0; i<s.size();i++)
+        {
+            int t = s.get(i).getStart().getHours();
+            if(st.equals("night") && t<5 || t>21)
+            {
+                redone.add(s.get(i));
+            }
+            else if(t>min && t<max)
+            {
+                redone.add(s.get(i));
+            }
+        }
+        return redone;
+    }
+    public static ArrayList<SDEvent> filterByType(ArrayList<SDEvent> s, String ty)
+    {
+        String x="ATHLETIC";
+        if(ty.equalsIgnoreCase("athletic")) {
+            x="athletic";
+        }
+        else if(ty.equalsIgnoreCase("concerts")) {
+            x="concerts";
+        }
+        else if(ty.equalsIgnoreCase("exhibits")) {
+            x="exhibits";
+        }
+        else if(ty.equalsIgnoreCase("farmers")) {
+            x="farmers";
+        }
+        else if(ty.equalsIgnoreCase("festival")) {
+            x="festival";
+        }
+        else if(ty.equalsIgnoreCase("parades")) {
+            x="parades";
+        }
+        for(int i=0;i<s.size();i++)
+        {
+            if(!x.equalsIgnoreCase(s.get(i).getType()))
+            {
+                s.remove(i);
+                i--;
+            }
+        }
+        return s;
+    }
+    //static public ArrayList<SDEvent> filterByAttendence(ArrayList<SDEvent> s, )
+
 }
