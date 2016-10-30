@@ -20,6 +20,8 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mvhs.sdconnected.SDConnected.myList;
+
 public class SearchEvents extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -117,6 +119,7 @@ public class SearchEvents extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            SDEvent.setFileArrayList(myList);
             finish();
         } else if (id == R.id.nav_gallery) {
             Intent i = new Intent(this, SearchEvents.class);
