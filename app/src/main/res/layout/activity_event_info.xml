@@ -11,12 +11,14 @@
     tools:context="com.mvhs.sdconnected.EventInfo">
 
     <Button
-        android:text="Share"
+        android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/ShareButton" />
+        android:id="@+id/ShareButton"
+        android:onClick="save"
+        />
 
     <ListView
         android:id="@+id/listvi"

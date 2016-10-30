@@ -1,12 +1,26 @@
 package com.mvhs.sdconnected;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.view.View;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+
+import static android.support.design.R.styleable.View;
 
 public class EventInfo extends AppCompatActivity {
 
@@ -102,6 +116,45 @@ public class EventInfo extends AppCompatActivity {
 //        }
         return(i);
     }
+
+
+    public void save(View view){
+        boolean write=true;
+        String path = "myevent.txt";
+        File file = new File(this.getFilesDir(), path);
+        System.out.println(this.getFilesDir());
+        try {
+            FileReader fInput = new FileReader(file);
+            BufferedReader br = new BufferedReader(fInput);
+            String fileLines;
+            List<String> ids = new ArrayList<String>();
+            while (br.ready()) {
+                fileLines = br.readLine();
+                ids = Arrays.asList(fileLines.split(","));
+            }
+            int thisID = getIntent().getIntExtra("infocall",0);
+            if(ids.contains(thisID))
+                write=false;
+
+        }
+        catch (IOException ioe)
+        {ioe.printStackTrace();}
+
+
+
+        if(write) {
+            try {
+                FileOutputStream fOut = openFileOutput(path, MODE_WORLD_READABLE);
+                OutputStreamWriter osw = new OutputStreamWriter(fOut);
+                osw.write(getIntent().getIntExtra("infocall", 0));
+                osw.flush();
+                osw.close();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }
+    }
+
 
 
 }
