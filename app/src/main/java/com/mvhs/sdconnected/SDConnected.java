@@ -22,6 +22,7 @@ import com.mvhs.sdconnected.network.GetSDEvents;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,7 +67,8 @@ public class SDConnected extends AppCompatActivity
     {
         file = this.getFilesDir();
         RFile = new File(this.getFilesDir(), path);
-
+        try {RFile.createNewFile();}
+        catch(IOException e){e.printStackTrace();}
         //Do stuff like updating UI elements
         String forList[] = new String[myList.size()];
 

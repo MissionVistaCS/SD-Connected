@@ -124,7 +124,8 @@ public class EventInfo extends AppCompatActivity {
         this.getFilesDir();
         String path = "myevent.txt";
         File file = SDConnected.RFile;
-        System.out.println(this.getFilesDir());
+        List<String> writing = new ArrayList<String>();
+        int thisID = getIntent().getIntExtra("infocall",0);
         try {
             FileReader fInput = new FileReader(file);
             BufferedReader br = new BufferedReader(fInput);
@@ -133,11 +134,10 @@ public class EventInfo extends AppCompatActivity {
             while (br.ready()) {
                 fileLines = br.readLine();
                 ids = Arrays.asList(fileLines.split(","));
+                if(ids.contains(thisID))
+                    write=false;
             }
-            int thisID = getIntent().getIntExtra("infocall",0);
-            if(ids.contains(thisID))
-                write=false;
-
+            writing = ids;
         }
         catch (IOException ioe)
         {ioe.printStackTrace();}
@@ -148,8 +148,15 @@ public class EventInfo extends AppCompatActivity {
             try {
                 FileOutputStream fOut = openFileOutput(path, MODE_WORLD_READABLE);
                 OutputStreamWriter osw = new OutputStreamWriter(fOut);
-                osw.write(getIntent().getIntExtra("infocall", 0));
 
+                String temp = "";
+                for(int i =0;i<writing.size();i++)
+                {
+                    temp+=writing.get(i);
+                    temp+=",";
+                }
+                temp+=thisID;
+                osw.write(temp);
 
                 osw.flush();
                 osw.close();
