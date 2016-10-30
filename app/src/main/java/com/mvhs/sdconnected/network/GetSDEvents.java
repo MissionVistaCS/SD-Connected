@@ -50,25 +50,20 @@ public class GetSDEvents extends AsyncTask<String, Integer, Boolean> {
 
                     SDConnected.sdevents.add(new SDEvent(id, title, subtitle, desc, loc, type, null, null, host, url, 0, 0, address, 0, 0));
                 }
+                return true;
             }
         } catch (Exception e) {
             Log.e(SDConnected.APP_NAME, "Error", e);
             return false;
         }
 
-        return true;
+        return false;
     }
 
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
-
-        Log.d(SDConnected.APP_NAME, "" + SDConnected.sdevents.size());
-        for (SDEvent event : SDConnected.sdevents)
-        {
-            Log.d(SDConnected.APP_NAME, event.getTitle());
-        }
-
-        SDConnected.onEventGetFinish();
+        if (aBoolean)
+            SDConnected.onEventGetFinish();
     }
 }

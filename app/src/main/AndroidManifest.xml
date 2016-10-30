@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SDConnected">
+        <activity android:name=".SDConnected" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,7 @@
         <activity android:name=".EventList" />
         <activity android:name=".EventInfo" />
         <activity android:name=".VotingLocationSearch" />
-        <activity android:name=".VotingLocationResults"></activity>
+        <activity android:name=".VotingLocationResults" />
     </application>
 
 </manifest>
