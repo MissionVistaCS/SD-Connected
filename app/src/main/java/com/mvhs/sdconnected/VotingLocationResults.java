@@ -1,9 +1,11 @@
 package com.mvhs.sdconnected;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import com.mvhs.sdconnected.network.GetVoterInfo;
@@ -44,6 +46,16 @@ public class VotingLocationResults extends AppCompatActivity {
         String output = "https://www.googleapis.com/civicinfo/v2/voterinfo?address=";
         output += TextUtils.join("+", tokens) + "&key=AIzaSyCK-XMR_gtggfXHAinOvIbGKJMOm4ljWCA";
         return (output);
+    }
+    public void mapButton(View Button)
+    {
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+address.getText()+"," +city.getText() +", California");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
+
     }
 
 

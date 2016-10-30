@@ -37,48 +37,56 @@
         android:id="@+id/textView5" />
 
     <TextView
+        android:text="Unknown Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameLabel"
+
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp" />
+
+    <TextView
         android:text="Unknown Address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addressLine"
-        android:layout_below="@+id/textView5"
-        android:layout_alignStart="@+id/cityLabel"
-        android:layout_marginTop="21dp" />
+
+        android:layout_below="@+id/nameLabel"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Unknown State"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/stateLabel"
-        android:layout_alignBaseline="@+id/cityLabel"
-        android:layout_alignBottom="@+id/cityLabel"
-        android:layout_toEndOf="@+id/addressLine" />
-
-    <TextView
-        android:text="Unknown Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/nameLabel"
-        android:layout_alignBaseline="@+id/textView5"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_alignEnd="@+id/stateLabel"
-        android:layout_toEndOf="@+id/textView4" />
+        android:layout_below="@+id/addressLine"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
 
     <TextView
         android:text="Unknown City"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
         android:id="@+id/cityLabel"
         android:layout_below="@+id/addressLine"
-        android:layout_alignStart="@+id/zipLabel" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Unknown Zip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:id="@+id/zipLabel"
-        android:layout_below="@+id/cityLabel"
-        android:layout_toEndOf="@+id/textView4" />
+        android:layout_below="@+id/stateLabel"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Find on Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mapButton"
+        android:onClick="mapButton"
+        android:layout_marginTop="56dp"
+        android:layout_below="@+id/zipLabel"
+        android:layout_toEndOf="@+id/textView3" />
 </RelativeLayout>
