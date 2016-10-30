@@ -27,4 +27,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:text="Export"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/ShareButton"
+        android:id="@+id/calendarButton"
+        android:layout_alignTop="@+id/ShareButton" />
+
 </RelativeLayout>
