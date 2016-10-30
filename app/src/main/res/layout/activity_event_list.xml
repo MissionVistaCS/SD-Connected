@@ -11,6 +11,7 @@
     tools:context="com.mvhs.sdconnected.EventList">
 
     <ListView
+        android:id="@+id/datlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
