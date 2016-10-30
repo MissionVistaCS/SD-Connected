@@ -25,7 +25,6 @@ public class VotingLocationResults extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(VotingLocationSearch.EXTRA_MESSAGE);
         setContentView(R.layout.activity_voting_location_results);
-<<<<<<< HEAD
         myAddress = (TextView) findViewById(R.id.textView4);
         address = (TextView) findViewById(R.id.addressLine);
         city = (TextView) findViewById(R.id.cityLabel);
@@ -67,10 +66,8 @@ public class VotingLocationResults extends AppCompatActivity {
 
     public void setZip(String zip) {
         this.zip.setText(zip);
-=======
         TextView address = (TextView) findViewById(R.id.textView4);
         address.setText(message);
->>>>>>> 30a02f57524343b0929bb2958467a60db15da9ba
     }
 }
 
