@@ -117,12 +117,10 @@ public class SearchEvents extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-
+            finish();
         } else if (id == R.id.nav_gallery) {
             Intent i = new Intent(this, SearchEvents.class);
             startActivity(i);
-
-
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(this, VotingLocationSearch.class);
             startActivity(i);
