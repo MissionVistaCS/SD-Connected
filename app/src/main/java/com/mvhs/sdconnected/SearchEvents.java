@@ -57,10 +57,6 @@ public class SearchEvents extends AppCompatActivity
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeSpinner.setAdapter(timeAdapter);
 
-        Spinner attnSpinner = (Spinner) findViewById(R.id.attendanceSpinner);
-        ArrayAdapter<CharSequence> attnAdapter = ArrayAdapter.createFromResource(this, R.array.attendance, android.R.layout.simple_spinner_item);
-        attnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        attnSpinner.setAdapter(attnAdapter);
     }
 
     @Override
@@ -122,7 +118,7 @@ public class SearchEvents extends AppCompatActivity
             SDEvent.setFileArrayList(myList);
             finish();
         } else if (id == R.id.nav_gallery) {
-            
+
         } else if (id == R.id.nav_slideshow) {
             Intent i = new Intent(this, VotingLocationSearch.class);
             startActivity(i);

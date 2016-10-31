@@ -97,7 +97,7 @@ public class SDConnected extends AppCompatActivity
 
         int itemPosition = position;
         Intent i = new Intent(this, EventInfo.class);
-        i.putExtra("infocall", sdevents.get(position).getId());
+        i.putExtra("infocall", myList.get(position).getId());
         startActivity(i);
     }
 
